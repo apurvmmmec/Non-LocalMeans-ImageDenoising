@@ -1,6 +1,6 @@
 function [ii] = computeIntegralImage(image)
 
 %REPLACE THIS
-ii = zeros(size(image));
+ii = cumsum(cumsum(image),2);
 
 end

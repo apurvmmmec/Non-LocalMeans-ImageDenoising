@@ -1,5 +1,5 @@
 function [] = ssd()
-imgO =imread('building.png');
+imgO =imread('images\debug\treesReference.png');
 img=im2double(rgb2gray(imgO));
 A = [1 2 1 1 0 2 1 3 4 0 0 0;...
      2 3 1 1 0 0 1 1 1 0 2 3;...
@@ -50,14 +50,15 @@ tic;
 %% patch that is down in Y-direction by 1 and X by 0 pixels.
 
 %%Calculate difference image for offset (0,-1)
-offCols = 5;
-offRows = 5;
-offX=-5;
-offY=-5;
-paddedImg = padarray(A,[offCols offRows],0,'both');
+% offCols = 5;
+% offRows = 5;
+swR=5;
+offX=+5;
+offY=+5;
+paddedImg = padarray(A,[swR swR],0,'both');
 i=1:size(A,1);
 j=1:size(A,2);
-offImg(i,j) = paddedImg(i+offRows-offY,j+offCols-offX)    
+offImg(i,j) = paddedImg(i+swR+offY,j+swR+offX)    
 imSq= (A-offImg).^2;
 intImg=cumsum(cumsum(imSq),2)
 %%ssd for a patch centred at x,y and patchWindow size a,a is

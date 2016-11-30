@@ -2,6 +2,7 @@
 
 % Row and column of the pixel for which we wish to find all similar patches 
 % NOTE: For this section, we pick only one patch
+close all;
 row = 10;
 col = 10;
 
@@ -9,14 +10,14 @@ col = 10;
 patchSize = 3;
 
 % Search window size - make sure your code works for different values
-searchWindowSize = 5;
+searchWindowSize =5;
 
 
 %% Implementation of work required in your basic section-------------------
 
 % TODO - Load Image
 % image = zeros(100, 100);
-image = rgb2gray(imread('images/debug/alleyNoisy_sigma20.png'));
+image = rgb2gray(double(imread('images/debug/alleyNoisy_sigma20.png')));
 
 % TODO - Fill out this function
 image_ii = computeIntegralImage(image);
@@ -31,7 +32,7 @@ figure('name', 'Normalised Integral Image');
     patchSize, searchWindowSize);
 
 % TODO - Template matching using integral images
-[offsetsRows_ii, offsetsCols_ii, distances_ii] = templateMatchingIntegralImage(row, col,...
+[offsetsRows_ii, offsetsCols_ii, distances_ii] = templateMatchingIntegralImage(image,row, col,...
     patchSize, searchWindowSize);
 
 %% Let's print out your results--------------------------------------------

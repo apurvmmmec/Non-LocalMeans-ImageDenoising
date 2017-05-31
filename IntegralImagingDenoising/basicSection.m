@@ -13,31 +13,29 @@ patchSize = 3;
 searchWindowSize =5;
 
 
-%% Implementation of work required in your basic section-------------------
-
-% TODO - Load Image
+% Load Image
 % image = zeros(100, 100);
 image = rgb2gray(double(imread('images/debug/alleyNoisy_sigma20.png')));
 
-% TODO - Fill out this function
+% Compute Integral Image
 image_ii = computeIntegralImage(image);
 
-% TODO - Display the normalised Integral Image
+% Display the normalised Integral Image
 % NOTE: This is for display only, not for template matching yet!
 figure('name', 'Normalised Integral Image');
 
 
-% TODO - Template matching for naive SSD (i.e. just loop and sum)
+% Template matching for naive SSD (i.e. just loop and sum)
 [offsetsRows_naive, offsetsCols_naive, distances_naive] = templateMatchingNaive(image,row, col,...
     patchSize, searchWindowSize);
 
-% TODO - Template matching using integral images
+% Template matching using integral images
 [offsetsRows_ii, offsetsCols_ii, distances_ii] = templateMatchingIntegralImage(image,row, col,...
     patchSize, searchWindowSize);
 
-%% Let's print out your results--------------------------------------------
+%% Let's print the results--------------------------------------------
 
-% NOTE: Your results for the naive and the integral image method should be
+% The results for the naive and the integral image method should be
 % the same!
 for i=1:length(offsetsRows_naive)
     disp(['offset rows: ', num2str(offsetsRows_naive(i)), '; offset cols: ',...
